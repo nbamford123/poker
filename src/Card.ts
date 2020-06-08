@@ -1,4 +1,4 @@
-import { Suit } from 'types';
+import {Suit} from 'types';
 
 export class Card {
   number: number;
@@ -8,16 +8,16 @@ export class Card {
     this.suit = suit;
   }
 
-  toString() {
+  toString(): string {
     return `{ number: ${
       this.number === 11
-        ? "J"
+        ? 'J'
         : this.number === 12
-        ? "Q"
+        ? 'Q'
         : this.number === 13
-        ? "K"
+        ? 'K'
         : this.number === 14
-        ? "A"
+        ? 'A'
         : this.number.toString()
     }, suit: ${this.suit} }`;
   }

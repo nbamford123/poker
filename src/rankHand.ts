@@ -1,12 +1,13 @@
 import {Card} from './Card';
 import {RankedHand} from './RankedHand';
 
-import { HandRank } from './types';
+import {HandRank} from './types';
 
 export type RankFunc = (cards: Card[]) => RankedHand;
 
 export const flush: RankFunc = cards =>
-  cards.every(c => c.suit === cards[0].suit) && new RankedHand(HandRank.Flush, cards);
+  cards.every(c => c.suit === cards[0].suit) &&
+  new RankedHand(HandRank.Flush, cards);
 
 export const internalStraight: RankFunc = cards =>
   cards.every(
@@ -23,7 +24,9 @@ export const straight: RankFunc = cards =>
     ]));
 
 export const straightFlush: RankFunc = cards =>
-  flush(cards) && straight(cards) && new RankedHand(HandRank.StraightFlush, cards);
+  flush(cards) &&
+  straight(cards) &&
+  new RankedHand(HandRank.StraightFlush, cards);
 
 // Combine like cards into arrays, returning the values of the group map
 export const group = (cards: Card[]): Array<Array<Card>> =>
@@ -75,7 +78,11 @@ export const twoPair: RankFunc = cards => {
   return (
     pair1 &&
     pair2 &&
-    new RankedHand(HandRank.TwoPair, [...pair1.hand, ...pair2.hand], pair2.extra)
+    new RankedHand(
+      HandRank.TwoPair,
+      [...pair1.hand, ...pair2.hand],
+      pair2.extra,
+    )
   );
 };
 

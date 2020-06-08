@@ -1,5 +1,5 @@
-import { Card } from './Card';
-import { HandRank } from './types';
+import {Card} from './Card';
+import {HandRank} from './types';
 
 export class RankedHand {
   rank: HandRank;
