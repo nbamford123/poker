@@ -1,0 +1,32 @@
+{
+  "name": "testrepo",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/nbamford123/testrepo.git",
+  "author": "nbamford <bamfordn@b2b.regn.net>",
+  "license": "MIT",
+  "scripts": {
+    "build": "babel src --out-dir dist --extensions .js,.ts,.tsx",
+    "check-types": "tsc",
+    "lint": "eslint --ignore-path .gitignore . --ext .js,.ts,.tsx",
+    "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json|ts|tsx)\"",
+    "format": "yarn run prettier --write ",
+    "check-format": "yarn run prettier --check",
+    "validate": "yarn run check-types && yarn run check-format && yarn run lint && yarn run build"
+  },
+  "devDependencies": {
+    "@babel/cli": "^7.7.7",
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
+    "@babel/preset-typescript": "^7.7.7",
+    "@typescript-eslint/eslint-plugin": "^2.15.0",
+    "@typescript-eslint/parser": "^2.15.0",
+    "eslint": "^6.8.0",
+    "eslint-config-prettier": "^6.9.0",
+    "husky": "^4.0.0",
+    "lint-staged": "^9.5.0",
+    "prettier": "^1.19.1",
+    "typescript": "^3.7.4"
+  },
+  "dependencies": {}
+}
