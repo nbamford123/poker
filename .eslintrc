@@ -1,12 +1,12 @@
 {
     "parserOptions": {
-      "ecmaVersion": 2019,
+      "ecmaVersion": 2020,
       "sourceType": "module",
       "ecmaFeatures": {
         "jsx": true
       }
     },
-    "extends": ["eslint:recommended", "eslint-config-prettier"],
+    "extends": ["react-app", "eslint-config-prettier"],
     "rules": {
       "strict": ["error", "never"]
     },

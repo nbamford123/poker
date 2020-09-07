@@ -12,21 +12,33 @@
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json|ts|tsx)\"",
     "format": "yarn run prettier --write ",
     "check-format": "yarn run prettier --check",
-    "validate": "yarn run check-types && yarn run check-format && yarn run lint && yarn run build"
+    "validate": "yarn run check-types && yarn run check-format && yarn run lint && yarn test && yarn run build",
+    "test": "jest"
   },
   "devDependencies": {
     "@babel/cli": "^7.7.7",
     "@babel/core": "^7.7.7",
     "@babel/preset-env": "^7.7.7",
     "@babel/preset-typescript": "^7.7.7",
+    "@types/jest": "^26.0.13",
     "@typescript-eslint/eslint-plugin": "^2.15.0",
     "@typescript-eslint/parser": "^2.15.0",
+    "babel-eslint": "^10.1.0",
     "eslint": "^6.8.0",
     "eslint-config-prettier": "^6.9.0",
+    "eslint-config-react-app": "^5.2.1",
+    "eslint-plugin-flowtype": "^5.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jsx-a11y": "^6.3.1",
+    "eslint-plugin-react": "^7.20.6",
+    "eslint-plugin-react-hooks": "^4.1.0",
     "husky": "^4.0.0",
+    "jest": "^26.4.2",
     "lint-staged": "^9.5.0",
     "prettier": "^1.19.1",
     "typescript": "^3.7.4"
   },
-  "dependencies": {}
+  "dependencies": {
+    "@babel/preset-react": "^7.10.4"
+  }
 }
