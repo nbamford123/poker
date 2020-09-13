@@ -10,7 +10,6 @@ const royalFlushHand = [
   {number: 12, suit: Suit.Diamond},
   {number: 11, suit: Suit.Diamond},
 ];
-
 test('finds royal flush', () => {
   const rankedHand = rankHand(royalFlushHand);
   expect(rankedHand.rank).toBe(HandRank.StraightFlush);
@@ -107,6 +106,7 @@ test('finds four of a kind', () => {
   expect(rankedHand.extra.length).toBe(1);
   expect(rankedHand.extra[0]).toStrictEqual({number: 11, suit: Suit.Spade});
   expect(rankedHand.hand.length).toBe(4);
+  expect(rankedHand.hand.every(c => c.number === 7));
   expect(arrayIsSorted(rankedHand.hand.map(c => c.number))).toBe(true);
 });
 
@@ -123,6 +123,7 @@ test('finds four of a kind 2', () => {
   expect(rankedHand.extra.length).toBe(1);
   expect(rankedHand.extra[0]).toStrictEqual({number: 7, suit: Suit.Spade});
   expect(rankedHand.hand.length).toBe(4);
+  expect(rankedHand.hand.every(c => c.number === 11));
   expect(arrayIsSorted(rankedHand.hand.map(c => c.number))).toBe(true);
 });
 
@@ -139,12 +140,9 @@ test('finds full house', () => {
   expect(rankedHand.extra.length).toBe(0);
   expect(rankedHand.hand.length).toBe(5);
   // The 3 of a kind should be sorted first
-  expect(
-    arrayIsSorted(
-      rankedHand.hand.map(c => c.number),
-      true,
-    ),
-  ).toBe(true);
+  expect(rankedHand.hand.slice(0, 3).every(c => c.number === 11));
+  // Then the pair
+  expect(rankedHand.hand.slice(3).every(c => c.number === 7));
 });
 
 const fullHouseHand2 = [
@@ -159,7 +157,10 @@ test('finds full house 2', () => {
   expect(rankedHand.rank).toBe(HandRank.FullHouse);
   expect(rankedHand.extra.length).toBe(0);
   expect(rankedHand.hand.length).toBe(5);
-  expect(arrayIsSorted(rankedHand.hand.map(c => c.number)));
+  // The 3 of a kind should be sorted first
+  expect(rankedHand.hand.slice(0, 3).every(c => c.number === 7));
+  // Then the pair
+  expect(rankedHand.hand.slice(3).every(c => c.number === 11));
 });
 
 const threeOfAKindHand = [
@@ -172,9 +173,10 @@ const threeOfAKindHand = [
 test('finds three of a kind', () => {
   const rankedHand = rankHand(threeOfAKindHand);
   expect(rankedHand.rank).toBe(HandRank.ThreeOfAKind);
-  expect(rankedHand.extra.length).toBe(2);
-  expect(rankedHand.hand.every(c => c.number === 7));
   expect(rankedHand.hand.length).toBe(3);
+  expect(rankedHand.hand.every(c => c.number === 7));
+  expect(rankedHand.extra.length).toBe(2);
+  expect(arrayIsSorted(rankedHand.extra.map(c => c.number))).toBe(true);
 });
 
 const threeOfAKindHand2 = [
@@ -184,10 +186,13 @@ const threeOfAKindHand2 = [
   {number: 7, suit: Suit.Spade},
   {number: 4, suit: Suit.Heart},
 ];
-test('finds royal flush', () => {
-  expect(rankHand(royalFlushHand).rank).toBe(HandRank.StraightFlush);
-  expect(rankHand(royalFlushHand).extra.length).toBe(0);
-  expect(rankHand(royalFlushHand).hand[4].number).toBe(14);
+test('finds three of a kind 2', () => {
+  const rankedHand = rankHand(threeOfAKindHand2);
+  expect(rankedHand.rank).toBe(HandRank.ThreeOfAKind);
+  expect(rankedHand.hand.length).toBe(3);
+  expect(rankedHand.hand.every(c => c.number === 11));
+  expect(rankedHand.extra.length).toBe(2);
+  expect(arrayIsSorted(rankedHand.extra.map(c => c.number))).toBe(true);
 });
 
 const pairHand = [
@@ -197,10 +202,13 @@ const pairHand = [
   {number: 7, suit: Suit.Spade},
   {number: 4, suit: Suit.Heart},
 ];
-test('finds royal flush', () => {
-  expect(rankHand(royalFlushHand).rank).toBe(HandRank.StraightFlush);
-  expect(rankHand(royalFlushHand).extra.length).toBe(0);
-  expect(rankHand(royalFlushHand).hand[4].number).toBe(14);
+test('finds pair', () => {
+  const rankedHand = rankHand(pairHand);
+  expect(rankedHand.rank).toBe(HandRank.Pair);
+  expect(rankedHand.hand.length).toBe(2);
+  expect(rankedHand.hand.every(c => c.number === 11));
+  expect(rankedHand.extra.length).toBe(3);
+  expect(arrayIsSorted(rankedHand.extra.map(c => c.number))).toBe(true);
 });
 
 const twoPairHand = [
@@ -210,8 +218,11 @@ const twoPairHand = [
   {number: 7, suit: Suit.Spade},
   {number: 12, suit: Suit.Heart},
 ];
-test('finds royal flush', () => {
-  expect(rankHand(royalFlushHand).rank).toBe(HandRank.StraightFlush);
-  expect(rankHand(royalFlushHand).extra.length).toBe(0);
-  expect(rankHand(royalFlushHand).hand[4].number).toBe(14);
+test('finds two pair', () => {
+  const rankedHand = rankHand(twoPairHand);
+  expect(rankedHand.rank).toBe(HandRank.TwoPair);
+  expect(rankedHand.hand.length).toBe(4);
+  expect(arrayIsSorted(rankedHand.hand.map(c => c.number))).toBe(true);
+  expect(rankedHand.extra.length).toBe(1);
+  expect(rankedHand.extra[0]).toStrictEqual({number: 7, suit: Suit.Spade});
 });
