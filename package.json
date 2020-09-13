@@ -6,7 +6,7 @@
   "author": "nbamford <bamfordn@b2b.regn.net>",
   "license": "MIT",
   "scripts": {
-    "build": "babel src --out-dir dist --extensions .js,.ts,.tsx",
+    "build": "babel src --out-dir dist --extensions .js,.ts,.tsx --ignore 'src/**/__tests__'",
     "check-types": "tsc",
     "lint": "eslint --ignore-path .gitignore . --ext .js,.ts,.tsx",
     "prettier": "prettier --ignore-path .gitignore \"**/*.+(js|json|ts|tsx)\"",
