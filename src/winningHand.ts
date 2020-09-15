@@ -74,6 +74,7 @@ export const breakTie = (hand1: RankedHand, hand2: RankedHand): WinningHand => {
         ? pair
         : highCard(hand1.extra, hand2.extra);
       break;
+
     default:
       // High card
       return highCard(hand1.hand, hand2.hand);
