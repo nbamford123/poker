@@ -35,7 +35,7 @@ export const breakTie = (hand1: RankedHand, hand2: RankedHand): WinningHand => {
     case HandRank.Flush:
     case HandRank.Straight:
       // Highest card wins
-      return highValue(hand1.hand[4].number, hand2.hand[4].number);
+      return highCard(hand1.hand, hand2.hand);
       break;
 
     case HandRank.FourOfAKind:

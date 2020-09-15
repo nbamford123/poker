@@ -60,6 +60,8 @@ test('finds straight', () => {
   expect(rankedHand.rank).toBe(HandRank.Straight);
   expect(rankedHand.extra.length).toBe(0);
   expect(rankedHand.hand.length).toBe(5);
+  // Make sure out ace got renumbered
+  expect(rankedHand.hand[0].number).toBe(1);
   expect(arrayIsSorted(rankedHand.hand.map(c => c.number))).toBe(true);
 });
 
