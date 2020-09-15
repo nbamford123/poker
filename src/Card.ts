@@ -16,7 +16,8 @@ export class Card {
         ? 'Q'
         : this.number === 13
         ? 'K'
-        : this.number === 14
+        : // Ace could be low in a straight
+        this.number === 14 || this.number === 1
         ? 'A'
         : this.number.toString()
     }, suit: ${this.suit} }`;
