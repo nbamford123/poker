@@ -16,3 +16,9 @@ export enum HandRank {
   FourOfAKind = 7,
   StraightFlush = 8,
 }
+
+export enum WinningHand {
+  FirstHand,
+  SecondHand,
+  Tie,
+}
