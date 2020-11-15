@@ -69,6 +69,7 @@ test('it shuffles', () => {
   const deck2 = new Deck([...deck.cards]);
   expect(arraysMatch(deck.cards, deck2.cards)).toBe(true);
   deck.shuffle();
+  expect(deck.cards.length).toBe(52);
   expect(deck.cards).toEqual(expect.arrayContaining(allCards));
   expect(arraysMatch(deck.cards, deck2.cards)).toBe(false);
 });
