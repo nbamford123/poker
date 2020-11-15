@@ -24,7 +24,4 @@ export class Deck {
       [this.cards[i], this.cards[j]] = [this.cards[j], this.cards[i]];
     }
   }
-  draw(): Card {
-    return this.cards.pop();
-  }
 }
