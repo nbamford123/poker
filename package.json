@@ -39,6 +39,7 @@
     "typescript": "^3.7.4"
   },
   "dependencies": {
-    "@babel/preset-react": "^7.10.4"
+    "@babel/preset-react": "^7.10.4",
+    "mersenne-twister": "^1.1.0"
   }
 }
