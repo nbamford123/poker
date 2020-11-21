@@ -1,4 +1,4 @@
 module.exports = {
-  testEnvironment: 'jest-environment-node',
-  // testEnvironment: 'jest-environment-jsdom'
+    testEnvironment: 'jest-environment-node',
+    // testEnvironment: 'jest-environment-jsdom'
 };

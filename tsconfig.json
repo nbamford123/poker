@@ -1,7 +1,10 @@
 {
-  "compilerOptions": {
-    "baseUrl": "./src",
-    "lib": ["es2019", "dom"],
-    "noEmit": true
-  }
+    "compilerOptions": {
+        "baseUrl": "./src",
+        "esModuleInterop": true,
+        "lib": ["es2019", "dom"],
+        "noEmit": true,
+        "skipLibCheck": true,
+        "target": "es2019"
+    }
 }
