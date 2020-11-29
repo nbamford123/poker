@@ -1,3 +1,5 @@
+import { Player } from './Player';
+
 export enum Suit {
     Heart = 'H',
     Diamond = 'D',
@@ -21,4 +23,8 @@ export enum WinningHand {
     FirstHand,
     SecondHand,
     Tie,
+}
+export interface Pot {
+    value: number;
+    players: Array<Player>;
 }

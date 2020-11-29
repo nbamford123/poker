@@ -18,7 +18,7 @@ export class Player {
         return true;
     }
     getBet(curBet: number): number {
-        // -1 = fold, 0 = call, > 0 = raise
+        // -1 = fold, curBet = call, > curBet = raise
         return 0;
     }
 }
