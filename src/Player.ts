@@ -5,10 +5,10 @@ export class Player {
     hand: Array<Card>;
     purse: number;
 
-    constructor(name: string) {
+    constructor(name: string, purse?: number) {
         this.name = name;
         this.hand = [];
-        this.purse = 0;
+        this.purse = purse || 0;
     }
     addCard(card: Card): void {
         this.hand.push(card);
@@ -20,5 +20,11 @@ export class Player {
     getBet(curBet: number): number {
         // -1 = fold, curBet = call, > curBet = raise
         return 0;
+    }
+    get stack(): number {
+        return this.purse;
+    }
+    set stack(stack: number) {
+        this.purse = stack;
     }
 }

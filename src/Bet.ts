@@ -3,12 +3,10 @@ import {Pot} from './types';
 
 interface Bettor {
     player: Player;
-    // don't technically need this, can just check for player with 0 purse
-    allIn: boolean;
     bet: number;
     folded: boolean;
 }
-
+// technically, this isn't a pure function-- should copy bettors
 export const makePots = (bettors: Array<Bettor>): Array<Pot> => {
     // Sort from lowest to highest bet in case side pot(s) need to be created
     const newBettors = bettors.sort((a, b) => a.bet - b.bet);
@@ -46,7 +44,8 @@ export const round = (
 
     while (betting) {
         const bettor = bettors[curBettor];
-        if (!bettor.folded && !bettor.allIn) {
+        console.log(bettor.player.purse)
+        if (!bettor.folded && bettor.player.stack) {
             // this is probably going to have to be asynchronous
             const bet = bettor.player.getBet(highBet - bettor.bet);
             if (bet < 0) {
@@ -58,9 +57,8 @@ export const round = (
                     highBettor = curBettor;
                     highBet += bet;
                 } else if (bet < highBet) {
-                    bettor.allIn = true;
-                    // but how do we ensure they've gone all in? Where is that enforced? in player.bet?
-                    // the "business logic" is spread out all over the place. Not good.
+                    // All in
+                    // How to return an errror to player? Probably all kinds of messaging will be needed
                 }
                 // call
                 bettor.bet += bet;
